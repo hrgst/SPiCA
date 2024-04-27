@@ -11,6 +11,7 @@ class Config:
     prefix: str
     origin: str
     wiki_prefix: str
+    wiki_title: str
     wiki_article_path: str
     wiki_static_path: str
     wiki_template_path: str
@@ -50,6 +51,7 @@ class Config:
         # Wiki config
         wiki_config: dict = config_all.get('wiki')
         wiki_prefix: str = wiki_config.get('prefix')
+        wiki_title: str = wiki_config.get('title')
         wiki_article_path: str = path_of(
             root_path + wiki_config.get('article'))
         wiki_static_path: str = path_of(
@@ -62,6 +64,7 @@ class Config:
         os.makedirs(wiki_template_path, exist_ok=True)
         # Register wiki config
         cls.wiki_prefix = wiki_prefix
+        cls.wiki_title = wiki_title
         cls.wiki_article_path = wiki_article_path
         cls.wiki_static_path = wiki_static_path
         cls.wiki_template_path = wiki_template_path

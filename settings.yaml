@@ -5,6 +5,7 @@ network:
   prefix: /
 wiki:
   prefix: /wiki
+  title: Offline Wiki
   article: /wiki/article
   static: /wiki/static
   template: /wiki/template

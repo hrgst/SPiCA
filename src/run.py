@@ -7,9 +7,16 @@ def init():
     sys.path.append(
         os.path.dirname(os.path.abspath(__file__)))
 
-    # Initialize config
+    from glob import glob
     from config import Config
+    from utils.fileutil import convert_markdown_file_to_html
+
+    # Initialize config
     Config.init()
+
+    # Convert all markdowns
+    for markdown_file in glob(f'{Config.wiki_article_path}/*.md'):
+        convert_markdown_file_to_html(markdown_file)
 
 
 def run():
