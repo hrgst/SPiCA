@@ -1,5 +1,6 @@
 from config import Config
 from utils.fileutil import path_of, read_file
+from utils.domutil import create_script_tag, create_meta_tag
 
 
 def build_article(page_name, is_edit):
@@ -23,11 +24,27 @@ def build_article(page_name, is_edit):
     global_menu_content = read_file(
         path_of(Config.wiki_article_path, 'menu.html'))
 
+    script_content = ''
+    script_src_map = (
+        f'{origin}/js/wiki.js',
+    )
+    for script_src in script_src_map:
+        script_content += create_script_tag(script_src)
+
+    meta_content = ''
+    meta_src_map = (
+        ('stylesheet', f'{origin}/css/wiki.css'),
+    )
+    for meta_type, meta_src in meta_src_map:
+        meta_content += create_meta_tag(meta_type, meta_src)
+
     content = replace_content(template_content, (
         ('{% page-title %}', wiki_title),
         ('{% post-title %}', article_title),
         ('{% post-content %}', article_html),
         ('{% global-menu %}', global_menu_content),
+        ('{% metas %}', meta_content),
+        ('{% scripts %}', script_content),
     ))
 
     return optimize_html(content)

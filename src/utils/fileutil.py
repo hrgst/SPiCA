@@ -3,6 +3,7 @@ import os
 from typing import Any
 import mistletoe
 from mistletoe import HTMLRenderer
+import sass
 import yaml
 
 
@@ -17,6 +18,24 @@ def convert_markdown_file_to_html(markdown_path, html_path=None):
     markdown_content = read_file(markdown_path)
     html_content = convert_markdown_to_html(markdown_content)
     write_file(html_path, html_content)
+
+
+def convert_scss_file_to_css(
+    scss_path: str,
+    export_path: str = None,
+    need_map: bool = True
+):
+    export_path = export_path or scss_path.replace('.scss', '.css')
+    map_path = export_path + '.map' if need_map else None
+
+    css_content, map_content = sass.compile(
+        filename=scss_path,
+        output_style='compressed',
+        source_map_embed=need_map,
+        source_map_filename=map_path)
+
+    write_file(export_path, css_content)
+    write_file(map_path, map_content)
 
 
 def path_of(*paths: str):

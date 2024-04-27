@@ -1,0 +1,27 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+div,
+header,
+main,
+aside,
+footer,
+article {
+    box-sizing: border-box;
+}
+
+#layout {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-flow: row;
+
+    &>div,
+    &>main,
+    &>aside {
+        align-self: stretch;
+    }
+}

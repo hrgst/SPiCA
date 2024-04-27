@@ -4,19 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% page-title %} | {% post-title %}</title>
+    {% metas %}
 </head>
 <body>
-    <header id="globa-header"></header>
+    <header id="global-header"></header>
     <div id="layout">
-        <main>
+        <main id="content">
             <article id="post">
-                <header id="post-header"></header>
+                <header id="post-header">
+                    <h2>{% post-title %}</h2>
+                </header>
                 <section id="post-content">{% post-content %}</section>
                 <footer id="post-footer"></footer>
             </article>
         </main>
-        <aside>{% global-menu %}</aside>
+        <aside id="global-menu">{% global-menu %}</aside>
     </div>
     <footer id="global-footer"></footer>
+    {% scripts %}
 </body>
 </html>

@@ -9,14 +9,20 @@ def init():
 
     from glob import glob
     from config import Config
-    from utils.fileutil import convert_markdown_file_to_html
+    from utils.fileutil import convert_markdown_file_to_html, convert_scss_file_to_css, path_of
 
     # Initialize config
     Config.init()
 
     # Convert all markdowns
-    for markdown_file in glob(f'{Config.wiki_article_path}/*.md'):
+    for markdown_file in glob(path_of(Config.wiki_article_path, '*.md')):
         convert_markdown_file_to_html(markdown_file)
+
+    # Compile all scss
+    for scss_file in glob(path_of(Config.wiki_static_path, '**', '*.scss'), recursive=True):
+        scss_basename = os.path.basename(scss_file)
+        if not scss_basename.startswith('_'):
+            convert_scss_file_to_css(scss_file)
 
 
 def run():

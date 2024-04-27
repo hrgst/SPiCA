@@ -1,3 +1,5 @@
 venv
 **/__pycache__
 wiki/article/*.html
+wiki/static/**/*.css
+wiki/static/**/*.css.map

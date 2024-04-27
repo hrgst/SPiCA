@@ -1,0 +1,46 @@
+@import './global';
+
+$background-color: #e0e0e0;
+
+body {
+    background-color: $background-color;
+}
+
+#layout {
+    margin: 0 auto;
+    width: calc(100% - 4rem);
+    flex-flow: row-reverse;
+}
+
+#content {
+    width: 80%;
+    padding: 10px;
+    background-color: #ffffff;
+}
+
+#global-menu {
+    width: 20%;
+    padding: 10px;
+    background-color: #f0f0f0;
+}
+
+#post {
+    padding: 0 20px;
+}
+
+#post-header {
+
+    h2 {
+        font-size: 1.75rem;
+        margin: .75em 0;
+    }
+
+    &::after {
+        content: '';
+        display: block;
+        width: 99%;
+        height: 2px;
+        margin: 0 auto;
+        background-color: #e0e0e0;
+    }
+}
