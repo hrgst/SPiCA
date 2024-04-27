@@ -3,3 +3,8 @@ network:
   port: 9000
   protocol: http
   prefix: /
+wiki:
+  prefix: /wiki
+  article: /wiki/article
+  static: /wiki/static
+  template: /wiki/template

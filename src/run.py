@@ -16,9 +16,12 @@ def run():
     from fastapi import FastAPI
     import uvicorn
     from config import Config
+    from routers import ALL_ROUTERS
 
     # Create WebAPI
     app = FastAPI()
+    for router in ALL_ROUTERS:
+        app.include_router(router)
 
     # Run API
     try:

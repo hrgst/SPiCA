@@ -5,10 +5,15 @@ class Config:
 
     exec_path: str
     root_path: str
+    config_all: dict
     hostname: str
     port: str
     prefix: str
     origin: str
+    wiki_prefix: str
+    wiki_article_path: str
+    wiki_static_path: str
+    wiki_template_path: str
 
     @classmethod
     def init(cls):
@@ -34,7 +39,6 @@ class Config:
         port: str = network_config.get('port')
         prefix: str = network_config.get('prefix')
         origin: str = f'{protocol}://{hostname}:{port}{prefix if prefix != "/" else ""}'
-
         # Register network config
         # cls.network_config = network_config
         # cls.protocol = protocol
@@ -42,3 +46,22 @@ class Config:
         cls.port = port
         cls.prefix = prefix
         cls.origin = origin
+
+        # Wiki config
+        wiki_config: dict = config_all.get('wiki')
+        wiki_prefix: str = wiki_config.get('prefix')
+        wiki_article_path: str = path_of(
+            root_path + wiki_config.get('article'))
+        wiki_static_path: str = path_of(
+            root_path + wiki_config.get('static'))
+        wiki_template_path: str = path_of(
+            root_path + wiki_config.get('template'))
+        # Create wiki paths
+        os.makedirs(wiki_article_path, exist_ok=True)
+        os.makedirs(wiki_static_path, exist_ok=True)
+        os.makedirs(wiki_template_path, exist_ok=True)
+        # Register wiki config
+        cls.wiki_prefix = wiki_prefix
+        cls.wiki_article_path = wiki_article_path
+        cls.wiki_static_path = wiki_static_path
+        cls.wiki_template_path = wiki_template_path
