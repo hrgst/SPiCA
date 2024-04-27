@@ -1,0 +1,17 @@
+# Git
+.gitignore      text eol=lf encoding=utf8
+.gitattributes  text eol=lf encoding=utf8
+
+# Source
+**/*.scss       text eol=lf encoding=utf8
+**/*.py         text eol=lf encoding=utf8
+
+# Document
+**/*.htm        text eol=lf encoding=utf8
+**/*.html       text eol=lf encoding=utf8
+**/*.css        text eol=lf encoding=utf8
+**/*.css.map    text eol=lf encoding=utf8
+**/*.xml        text eol=lf encoding=utf8
+**/*.json       text eol=lf encoding=utf8
+**/*.yaml       text eol=lf encoding=utf8
+**/*.md         text eol=lf encoding=utf8
