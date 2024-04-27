@@ -14,7 +14,7 @@ prefix = global_prefix + Config.wiki_prefix
 def get_article(page: str, edit: str = None):
 
     article_name = page
-    is_edit = edit is None
+    is_edit = not edit is None
 
     return HTMLResponse(build_article(article_name, is_edit))
 

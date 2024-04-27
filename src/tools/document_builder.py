@@ -8,8 +8,9 @@ def build_article(page_name, is_edit):
     origin = Config.origin + wiki_prefix
 
     wiki_title = Config.wiki_title
+    template_name = 'article-editor' if is_edit else 'article'
     template_content = read_file(path_of(
-        Config.wiki_template_path, 'article.html'))
+        Config.wiki_template_path, f'{template_name}.html'))
 
     article_meta: dict = read_file(
         path_of(Config.wiki_article_path, f'{page_name}.yaml'), is_yaml=True)
@@ -40,8 +41,10 @@ def build_article(page_name, is_edit):
 
     content = replace_content(template_content, (
         ('{% page-title %}', wiki_title),
+        ('{% post-name %}', page_name),
         ('{% post-title %}', article_title),
         ('{% post-content %}', article_html),
+        ('{% post-source %}', article_markdown),
         ('{% global-menu %}', global_menu_content),
         ('{% metas %}', meta_content),
         ('{% scripts %}', script_content),

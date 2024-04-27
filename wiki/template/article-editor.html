@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% page-title %} | {% post-title %}</title>
+    {% metas %}
+</head>
+<body>
+    <header id="global-header">
+        <h1>{% page-title %}</h1>
+    </header>
+    <div id="layout">
+        <main id="content">
+            <article id="post">
+                <header id="post-header">
+                    <h2>{% post-title %}</h2>
+                </header>
+                <section id="post-editor">
+                    <h3>タイトル</h3>
+                    <input type="text" value="{% post-title %}" />
+                    <h3>ページ</h3>
+                    <input type="text" value="{% post-name %}" disabled />
+                    <h3>内容</h3>
+                    <textarea
+                              name="post-content"
+                              id="post-editor-content">{% post-source %}</textarea>
+                    <div id="post-controller">
+                        <button id="submit-content">送信</button>
+                        <button id="preview-content">プレビュー</button>
+                        <button id="ignore-change"
+                                class="red-button">戻る</button>
+                    </div>
+                </section>
+
+                <section id="post-preview"></section>
+                <footer id="post-footer"></footer>
+            </article>
+        </main>
+        <aside id="global-menu">{% global-menu %}</aside>
+    </div>
+    <footer id="global-footer">© 2024 Hiragi Sota.</footer>
+    {% scripts %}
+</body>
+</html>

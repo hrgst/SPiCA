@@ -13,6 +13,25 @@ article {
     box-sizing: border-box;
 }
 
+input[type=text],
+input[type=password],
+input[type=button],
+textarea,
+button {
+    padding: 5px;
+    background-color: #00000011;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    outline: none;
+    font-size: inherit;
+    font-family: inherit;
+}
+
+input[type=button],
+button {
+    padding: 5px 10px;
+}
+
 #layout {
     display: flex;
     justify-content: center;

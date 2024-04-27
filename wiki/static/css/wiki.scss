@@ -51,3 +51,16 @@ body {
         background-color: #e0e0e0;
     }
 }
+
+#post-editor {
+
+    input[type=text],
+    textarea {
+        width: 80%;
+    }
+}
+
+#post-editor-content {
+    height: 30em;
+    font-family: 'Consolas', 'Meiryo';
+}
