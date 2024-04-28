@@ -14,13 +14,24 @@
         <main id="content">
             <article id="post">
                 <header id="post-header">
+                    <div id="post-meta">
+                        <div></div>
+                        <a href="{% article-url %}">ページに戻る</a>
+                    </div>
                     <h2>{% post-title %}</h2>
                 </header>
                 <section id="post-editor">
                     <h3>タイトル</h3>
-                    <input type="text" value="{% post-title %}" />
+                    <input
+                           type="text"
+                           id="title-editor"
+                           value="{% post-title %}" />
                     <h3>ページ</h3>
-                    <input type="text" value="{% post-name %}" disabled />
+                    <input
+                           type="text"
+                           id="post-name"
+                           value="{% post-name %}"
+                           disabled />
                     <h3>内容</h3>
                     <textarea
                               name="post-content"

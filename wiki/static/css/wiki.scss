@@ -27,7 +27,8 @@ body {
 
 #global-menu {
     width: 20%;
-    padding: 10px;
+    max-width: 400px;
+    padding: 20px;
     background-color: #f0f0f0;
 }
 
@@ -39,7 +40,7 @@ body {
 
     h2 {
         font-size: 1.75rem;
-        margin: .75em 0;
+        margin: .25em 0 .75em 0;
     }
 
     &::after {
@@ -52,11 +53,27 @@ body {
     }
 }
 
+#post-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-flow: row;
+}
+
 #post-editor {
 
     input[type=text],
     textarea {
         width: 80%;
+    }
+
+    &::after {
+        content: '';
+        display: block;
+        width: 95%;
+        height: 2px;
+        margin: 20px auto;
+        background-color: #dadada;
     }
 }
 

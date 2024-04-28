@@ -1,11 +1,13 @@
 from config import Config
-from utils.fileutil import path_of, read_file
+from utils.fileutil import path_of, read_file, write_file, convert_markdown_file_to_html
 from utils.domutil import create_script_tag, create_meta_tag
 
 
 def build_article(page_name, is_edit):
     wiki_prefix = Config.wiki_prefix if Config.wiki_prefix != '/' else ''
     origin = Config.origin + wiki_prefix
+    article_url = origin + f'?page={page_name}'
+    editor_url = article_url + '&edit'
 
     wiki_title = Config.wiki_title
     template_name = 'article-editor' if is_edit else 'article'
@@ -48,6 +50,8 @@ def build_article(page_name, is_edit):
         ('{% global-menu %}', global_menu_content),
         ('{% metas %}', meta_content),
         ('{% scripts %}', script_content),
+        ('{% article-url %}', article_url),
+        ('{% editor-url %}', editor_url),
     ))
 
     return optimize_html(content)
@@ -71,3 +75,16 @@ def replace_content(content: str, replace_contents: tuple):
     for keyword, content in replace_contents:
         final_content = final_content.replace(keyword, content)
     return final_content
+
+
+def update_article(article_name, article_title, article_content):
+    markdown_path = path_of(
+        Config.wiki_article_path, f'{article_name}.md')
+    write_file(markdown_path, article_content)
+    convert_markdown_file_to_html(markdown_path)
+
+    meta_path = path_of(
+        Config.wiki_article_path, f'{article_name}.yaml')
+    meta_data: dict = read_file(meta_path, is_yaml=True)
+    meta_data['title'] = article_title
+    write_file(meta_path, meta_data, is_yaml=True)
