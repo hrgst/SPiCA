@@ -25,6 +25,12 @@ button {
     outline: none;
     font-size: inherit;
     font-family: inherit;
+
+    &:active,
+    &:focus,
+    &:focus-visible {
+        border: 1px solid #00000066;
+    }
 }
 
 input[type=text],
@@ -40,6 +46,14 @@ textarea {
 input[type=button],
 button {
     padding: 5px 10px;
+    cursor: pointer;
+
+    &:hover,
+    &:active,
+    &:focus,
+    &:focus-visible {
+        background-color: #00000022;
+    }
 }
 
 #layout {
