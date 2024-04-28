@@ -59,6 +59,7 @@ def build_article(page_name, is_edit):
         ('{% global-menu %}', global_menu_content),
         ('{% metas %}', meta_content),
         ('{% scripts %}', script_content),
+        ('{% origin %}', origin),
         ('{% article-url %}', article_url),
         ('{% editor-url %}', editor_url),
         ('{% menu-editor-url %}', global_menu_editor_url)

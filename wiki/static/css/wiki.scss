@@ -19,6 +19,12 @@ body {
     flex-grow: 1;
 }
 
+#global-header {
+    h1 {
+        margin-left: 4rem;
+    }
+}
+
 #content {
     width: 80%;
     padding: 10px;

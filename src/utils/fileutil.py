@@ -85,3 +85,12 @@ class CustomHTMLRenderer(HTMLRenderer):
             return f'<h5>{self.render_inner(token)}</h5>'
         else:
             return f'<p><b>{self.render_inner(token)}<b></p>'
+
+    def render_link(self, token):
+        link_url = self.escape_url(token.target)
+        link_text = self.render_inner(token)
+
+        if not link_url.startswith('http'):
+            link_url = '{% origin %}'+f'?page={link_url}'
+
+        return f'<a href="{link_url}">{link_text}</a>'
