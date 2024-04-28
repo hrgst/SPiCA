@@ -25,7 +25,7 @@ markdown に対応しています。
 
 ```yaml
 network:
-    host: ホスト名または、外部に後悔する場合は0.0.0.0
+    host: ホスト名または、外部に公開する場合は0.0.0.0
     port: ポート番号
     protocol: http （しか対応していません。）
     prefix: URLのoriginの後に付くprefix（任意）
@@ -58,7 +58,7 @@ Modify `settings.yaml`.
 
 ```yaml
 network:
-    host: Hostname or 0.0.0.0 for external regret
+    host: Hostname or 0.0.0.0 for external publish
     port: Port number
     protocol: http (only supported)
     prefix: Prefix to append after URL origin (optional)
