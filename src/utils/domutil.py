@@ -3,7 +3,5 @@ def create_script_tag(src: str):
 
 
 def create_meta_tag(type: str, src: str):
-    tag = ''
-    if type == 'stylesheet':
-        tag = f'<link rel="stylesheet" href="{src}">'
+    tag = f'<link rel="{type}" href="{src}">'
     return tag

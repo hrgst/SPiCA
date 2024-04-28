@@ -46,6 +46,7 @@ def build_article(page_name, is_edit):
     meta_content = ''
     meta_src_map = (
         ('stylesheet', f'{origin}/css/wiki.css'),
+        ('icon', f'{origin}/favicon.webp'),
     )
     for meta_type, meta_src in meta_src_map:
         meta_content += create_meta_tag(meta_type, meta_src)

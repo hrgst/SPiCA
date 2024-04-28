@@ -15,3 +15,17 @@
 **/*.json       text eol=lf encoding=utf8
 **/*.yaml       text eol=lf encoding=utf8
 **/*.md         text eol=lf encoding=utf8
+
+# Images
+**/*.svg         text eol=lf encoding=utf8
+**/*.jpg         binary
+**/*.jpeg        binary
+**/*.JPG         binary
+**/*.JPEG        binary
+**/*.png         binary
+**/*.PNG         binary
+**/*.gif         binary
+**/*.GIF         binary
+**/*.ico         binary
+**/*.ICO         binary
+**/*.webp        binary
