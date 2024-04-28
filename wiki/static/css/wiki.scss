@@ -28,8 +28,14 @@ body {
 #global-menu {
     width: 20%;
     max-width: 400px;
-    padding: 20px;
+    padding: 10px 20px 20px 20px;
     background-color: #f0f0f0;
+
+    &>h3:first-child,
+    &>h4:first-child,
+    &>h5:first-child {
+        margin-top: 0;
+    }
 }
 
 #post {
@@ -80,4 +86,8 @@ body {
 #post-editor-content {
     height: 30em;
     font-family: 'Consolas', 'Meiryo';
+}
+
+#global-menu-edit {
+    text-align: right;
 }

@@ -38,6 +38,10 @@ def convert_scss_file_to_css(
     write_file(map_path, map_content)
 
 
+def delete_file(path: str):
+    os.remove(path)
+
+
 def path_of(*paths: str):
     return os.path.abspath(os.path.join(*paths))
 

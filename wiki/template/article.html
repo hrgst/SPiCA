@@ -24,7 +24,11 @@
                 <footer id="post-footer"></footer>
             </article>
         </main>
-        <aside id="global-menu">{% global-menu %}</aside>
+        <aside id="global-menu">
+            <div id="global-menu-edit"><a href="{% menu-editor-url %}">編集する</a>
+            </div>
+            {% global-menu %}
+        </aside>
     </div>
     <footer id="global-footer">© 2024 Hiragi Sota.</footer>
     {% scripts %}
