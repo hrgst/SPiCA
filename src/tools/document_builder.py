@@ -109,7 +109,6 @@ def build_image_gallery(page: int):
     for user_image in user_images:
         image_filename = user_image.get('filename')
         image_path = f'{origin}/user-images/{image_filename}'
-        print(image_path)
         image_gallery_content += create_image_gallery_card(
             image_path, image_filename)
 

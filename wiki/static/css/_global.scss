@@ -42,6 +42,15 @@ textarea {
         background-color: #00000008;
         color: #00000077;
     }
+
+    &:read-only {
+
+        &:active,
+        &:focus,
+        &:focus-visible {
+            border: 1px solid transparent;
+        }
+    }
 }
 
 input[type=button],
