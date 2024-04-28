@@ -1,0 +1,23 @@
+<div id="image-gallery-panel">
+    <section id="image-gallery-controller">
+        <div>
+            <label for="">ファイル名</label>
+            <input type="text" id="image-filename">
+            <button id="rename-image-button">変更</button>
+            <button id="delete-image-button" class="red-button">削除</button>
+        </div>
+        <div>
+            <label for="">埋め込み</label>
+            <input type="text" id="image-markdown-text">
+            <button id="copy-markdown-button">埋め込みコードをコピー</button>
+        </div>
+        <div>
+            <label for="">アップロード</label>
+            <input type="file" id="new-image-seleciton">
+            <button id="upload-image-button">追加</button>
+        </div>
+    </section>
+    <section id="image-gallery-list">
+        {% image-gallery-cards %}
+    </section>
+</div>

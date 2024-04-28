@@ -1,6 +1,6 @@
 from config import Config
 from utils.fileutil import delete_file, path_of, read_file, write_file, convert_markdown_file_to_html
-from utils.domutil import create_script_tag, create_meta_tag
+from utils.domutil import create_script_tag, create_meta_tag, create_image_gallery_card
 
 
 def build_article(page_name, is_edit):
@@ -80,6 +80,76 @@ def build_article(page_name, is_edit):
     ))
 
     return optimize_html(content)
+
+
+def build_image_gallery(page: int):
+    page_name = '画像'
+    wiki_prefix = Config.wiki_prefix if Config.wiki_prefix != '/' else ''
+    origin = Config.origin + wiki_prefix
+    article_url = '#'
+    editor_url = '#'
+    global_menu_editor_url = origin + f'?page=menu&edit'
+
+    # Wiki Title
+    wiki_title = Config.wiki_title
+
+    # Page template
+    template_content = read_file(path_of(
+        Config.wiki_template_path, f'article.html'))
+
+    # Article content
+    image_gallery_panel = read_file(
+        path_of(Config.wiki_template_path, 'image-gallery-panel.html'))
+
+    user_images_path = path_of(Config.wiki_static_path, 'user-images')
+    user_images_meta = read_file(path_of(
+        user_images_path, 'user-images.json'), is_json=True)
+    image_gallery_content = ''
+    user_images = user_images_meta.get('images')
+    for user_image in user_images:
+        image_filename = user_image.get('filename')
+        image_path = f'{origin}/user-images/{image_filename}'
+        print(image_path)
+        image_gallery_content += create_image_gallery_card(
+            image_path, image_filename)
+
+    # Global menu content
+    global_menu_content = read_file(
+        path_of(Config.wiki_article_path, 'menu.html'))
+
+    # Scripts
+    script_content = ''
+    script_src_map = (
+        f'{origin}/js/wiki.js',
+    )
+    for script_src in script_src_map:
+        script_content += create_script_tag(script_src)
+
+    # Metas
+    meta_content = ''
+    meta_src_map = (
+        ('stylesheet', f'{origin}/css/wiki.css'),
+        ('icon', f'{origin}/favicon.webp'),
+    )
+    for meta_type, meta_src in meta_src_map:
+        meta_content += create_meta_tag(meta_type, meta_src)
+
+    # Replace infos
+    content = replace_content(template_content, (
+        ('{% page-title %}', wiki_title),
+        ('{% post-name %}', page_name),
+        ('{% post-title %}', page_name),
+        ('{% post-content %}', image_gallery_panel),
+        ('{% global-menu %}', global_menu_content),
+        ('{% metas %}', meta_content),
+        ('{% scripts %}', script_content),
+        ('{% origin %}', origin),
+        ('{% article-url %}', article_url),
+        ('{% editor-url %}', editor_url),
+        ('{% menu-editor-url %}', global_menu_editor_url),
+        ('{% image-gallery-cards %}', image_gallery_content),
+    ))
+    return content
 
 
 def optimize_html(content, unescape=True, minify=True):

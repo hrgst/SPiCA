@@ -1,3 +1,7 @@
 {
-    "images": []
+    "images": [
+        {
+            "filename": "sample_image.webp"
+        }
+    ]
 }

@@ -4,7 +4,7 @@ from fastapi.requests import Request
 from fastapi.responses import Response, FileResponse, HTMLResponse, JSONResponse, RedirectResponse
 from config import Config
 from utils.fileutil import path_of, convert_markdown_to_html
-from tools.document_builder import build_article, optimize_html, update_article
+from tools.document_builder import build_article, build_image_gallery, optimize_html, update_article
 
 router = APIRouter()
 global_prefix = Config.prefix if Config.prefix != '/' else ''
@@ -30,13 +30,16 @@ async def get_article_route(page: str, edit: str = None):
     article_name = page
 
     article_content = None
-    try:
-        # Build article HTML
-        article_content = build_article(article_name, is_edit)
-    except FileNotFoundError as e:
-        # Show edit page if not found article
-        redirect_url = Config.origin + prefix + f'?page={page}&edit'
-        return RedirectResponse(redirect_url)
+    if page == 'image-gallery':
+        article_content = build_image_gallery(1)  # TODO:
+    else:
+        try:
+            # Build article HTML
+            article_content = build_article(article_name, is_edit)
+        except FileNotFoundError as e:
+            # Show edit page if not found article
+            redirect_url = Config.origin + prefix + f'?page={page}&edit'
+            return RedirectResponse(redirect_url)
 
     return HTMLResponse(article_content)
 

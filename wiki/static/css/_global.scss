@@ -16,6 +16,7 @@ article {
 input[type=text],
 input[type=password],
 input[type=button],
+input[type=file],
 textarea,
 button {
     padding: 5px;
@@ -54,6 +55,16 @@ button {
     &:focus-visible {
         background-color: #00000022;
     }
+
+    &.red-button {
+        color: #e20000;
+        border: 1px solid #e20000;
+        background-color: #ffebeb;
+    }
+}
+
+input[type=file] {
+    background-color: transparent;
 }
 
 #layout {
