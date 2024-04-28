@@ -3,6 +3,10 @@ import os
 
 class Config:
 
+    __version__ = '1.0.0'
+    __author__ = 'Hiragi Sota'
+    __application__ = 'SwiftFlow'
+
     exec_path: str
     root_path: str
     config_all: dict
