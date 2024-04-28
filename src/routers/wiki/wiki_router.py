@@ -13,6 +13,8 @@ prefix = global_prefix + Config.wiki_prefix
 
 @router.get(prefix+'/{path:path}')
 async def get_file_route(path: str):
+    ''' Get a static file. '''
+
     filepath = path_of(Config.wiki_static_path, path)
     if os.path.exists(filepath):
         return FileResponse(filepath)
@@ -22,13 +24,17 @@ async def get_file_route(path: str):
 
 @router.get(prefix)
 async def get_article_route(page: str, edit: str = None):
+    ''' Get an article page. '''
+
     is_edit = not edit is None
     article_name = page
 
     article_content = None
     try:
+        # Build article HTML
         article_content = build_article(article_name, is_edit)
     except FileNotFoundError as e:
+        # Show edit page if not found article
         redirect_url = Config.origin + prefix + f'?page={page}&edit'
         return RedirectResponse(redirect_url)
 
@@ -37,7 +43,10 @@ async def get_article_route(page: str, edit: str = None):
 
 @router.post(prefix+'/preview')
 async def get_article_preview_route(req: Request):
+    ''' Return converted HTML from markdown. '''
     request = await req.json()
+
+    # Return content converted to HTML
     html_content = optimize_html(
         convert_markdown_to_html(request.get('markdown')))
     return JSONResponse({'content': html_content})
@@ -45,13 +54,18 @@ async def get_article_preview_route(req: Request):
 
 @router.post(prefix+'/submit')
 async def update_article_route(req: Request):
+    ''' Update or delete an article. '''
     request = await req.json()
+
+    # Get content information
     article_title = request.get('title')
     article_key = request.get('article')
     article_markdown = request.get('markdown')
 
+    # Update article files
     update_article(article_key, article_title, article_markdown)
 
+    # Redirect to home page if content deleted
     is_delete = article_markdown == ''
     redirect_page = 'home' if is_delete else article_key
     redirect_url = Config.origin + prefix + f'?page={redirect_page}'

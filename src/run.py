@@ -3,6 +3,8 @@ import sys
 
 
 def init():
+    ''' Initialize application. '''
+
     # Set environment variable
     sys.path.append(
         os.path.dirname(os.path.abspath(__file__)))
@@ -26,6 +28,8 @@ def init():
 
 
 def run():
+    ''' Run application. '''
+
     from fastapi import FastAPI
     import uvicorn
     from config import Config
