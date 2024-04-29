@@ -3,6 +3,7 @@ import os
 from typing import Any
 import mistletoe
 from mistletoe import HTMLRenderer
+import mistletoe.span_token
 import sass
 import yaml
 
@@ -115,3 +116,14 @@ class CustomHTMLRenderer(HTMLRenderer):
             link_url = '{% origin %}'+f'?page={link_url}'
 
         return f'<a href="{link_url}">{link_text}</a>'
+
+    def render_image(self, image: mistletoe.span_token.Image):
+        image_url = image.src
+        if not image_url.startswith('http'):
+            image_url = '{% origin %}' + f'/user-images/{image.src}'
+        image_title = image.src
+        image_label = self.render_inner(image)
+
+        img_tag = f'<img src="{image_url}" alt="{image_title}" title="{image_label}">'
+        figure_wrapper = f'<figure>{img_tag}<figcaption>{image_label}</figcaption></figure>'
+        return figure_wrapper

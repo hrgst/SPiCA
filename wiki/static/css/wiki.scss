@@ -47,6 +47,50 @@ body {
 
 #post {
     padding: 0 20px;
+
+    h3 {
+        font-size: 1.5rem;
+        border-bottom: 1px solid #dadada;
+        padding-left: 5px;
+        margin-top: 2em;
+        margin-bottom: .5rem;
+    }
+
+    h4 {
+        font-size: 1.4rem;
+        border-left: 4px solid #dadada;
+        padding-left: .75rem;
+        margin-top: 1.5em;
+        margin-bottom: .5rem;
+    }
+
+    h5 {
+        font-size: 1.2rem;
+        margin-top: 1.5em;
+        margin-bottom: .5em;
+        margin-bottom: .5rem;
+    }
+
+    figure {
+        $max-image-height: 40vh;
+
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-flow: column;
+        background-color: #eeeeee;
+        padding: 2px;
+        width: max-content;
+
+        img {
+            max-height: $max-image-height;
+        }
+
+        figcaption {
+            width: 100%;
+            text-align: center;
+        }
+    }
 }
 
 #post-header {
@@ -115,8 +159,6 @@ body {
         figure {
             width: 100%;
             height: auto;
-            margin: 0;
-            padding: 0;
             user-select: none;
             pointer-events: none;
 
@@ -160,5 +202,45 @@ body {
     input[type=file] {
         width: 60%;
         min-width: 30em;
+    }
+}
+
+#post-content-controller {
+    position: relative;
+
+    button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-flow: row;
+        padding: 5px;
+        margin: 0 2px 2px 0;
+        position: relative;
+
+        img {
+            user-select: none;
+            pointer-events: none;
+        }
+    }
+}
+
+#insert-image-button {
+    &.open:after {
+        content: '画像を追加';
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        padding: 3px 10px;
+        position: absolute;
+        top: -2.2em;
+        left: 50%;
+        color: white;
+        background-color: #333333;
+        font-size: .85rem;
+        white-space: nowrap;
+        box-sizing: border-box;
+        transform: translateX(-50%);
+        border-radius: 5px;
     }
 }

@@ -4,7 +4,6 @@ function editPageMain () {
     const contentEditor = document.querySelector('#post-editor-content');
     const previewArea = document.querySelector('#post-preview');
 
-
     const submitBtn = document.querySelector('#submit-content');
     submitBtn.addEventListener('click', () => {
         const pageKey = document.querySelector('#post-name').value;
@@ -42,6 +41,22 @@ function editPageMain () {
     const ignoreBtn = document.querySelector('#ignore-change');
     ignoreBtn.addEventListener('click', () => {
         location.href = location.origin + location.pathname + location.search.split('&')[0];
+    });
+
+    const imageGalleryBtn = document.querySelector('#insert-image-button');
+    imageGalleryBtn.addEventListener('click', () => {
+        const imageGalleryURL = location.origin + location.pathname + '?page=image-gallery';
+        window.open(imageGalleryURL, '_blank');
+    });
+
+    const controllers = document.querySelectorAll('#post-content-controller button');
+    controllers.forEach(btn => {
+        btn.addEventListener('mouseover', () => {
+            btn.classList.add('open');
+        });
+        btn.addEventListener('mouseleave', () => {
+            btn.classList.remove('open');
+        });
     });
 }
 
